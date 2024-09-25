@@ -1,13 +1,16 @@
+import { useState } from "react";
 import styles from "./formComponent.module.css"
 
 export default function FormComponent(){
+    const [animationID, setAnimationID] = useState('');
+    const [instance, setInstance] = useState('');
     // const onSubmit=(data, e)=> {
 
     //     console.log(data)
     // }
     const onSubmit=(e,)=> {
         e.preventDefault()
-        console.log(e)
+        console.log(animationID, instance)
     }
     return(
         <>
@@ -21,7 +24,9 @@ export default function FormComponent(){
                 className={styles.FormInput}
                 id="animationID"
                 name="animationID"
-                aria-describedby="emailHelp" />
+                aria-describedby="emailHelp"
+                onChange={(e) => setAnimationID(e.target.value)} 
+            />
             </div>
 
             <div className="form-group">
@@ -30,39 +35,41 @@ export default function FormComponent(){
                 type="text"
                 name="instance"
                 className={styles.FormInput}
-                id="instance" />
+                id="instance" 
+                onChange={(e) => setInstance(e.target.value)}
+            />
             </div>
 
             <div className="form-group">
-            <label className={styles.Label} htmlFor="instance">No. Of Drones</label>
+            <label className={styles.Label} htmlFor="drones">No. Of Drones</label>
             <input
                 type="text"
-                name="instance"
+                name="drones"
                 className={styles.FormInput}
-                id="instance" />
+                id="drones" />
             </div>
 
             <div className="form-group">
-            <label className={styles.Label} htmlFor="instance">Geo Location(Lat, Lon)</label>
+            <label className={styles.Label} htmlFor="geo">Geo Location(Lat, Lon)</label>
             <input
                 type="text"
-                name="instance"
+                name="geo"
                 className={styles.FormInput}
-                id="instance" />
+                id="geo" />
             </div>
 
             <div className="form-group">
-            <label className={styles.Label} htmlFor="instance">Animation File Path</label>
+            <label className={styles.Label} htmlFor="animfilepath">Animation File Path</label>
             <input
                 type="text"
-                name="instance"
+                name="animfilepath"
                 className={styles.FormInput}
-                id="instance" />
+                id="animfilepath" />
             </div>
 
             <div className="form-group">
-            <label className={styles.Label} htmlFor="instance">Advanced Options</label>
-            <select className={styles.FormSelect} name="instance" id="instance">
+            <label className={styles.Label} htmlFor="adv">Advanced Options</label>
+            <select className={styles.FormSelect} name="adv" id="adv">
                 <option value="op1">op1</option>
                 <option value="op2">op2</option>
                 <option value="op3">op3</option>
