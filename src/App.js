@@ -11,9 +11,7 @@ function App() {
             <FormComponent/>
         </div>
         <div className='Display'>
-
         </div>
-
       </div>
     </>
   );

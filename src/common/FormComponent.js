@@ -1,8 +1,13 @@
 import styles from "./formComponent.module.css"
 
 export default function FormComponent(){
-    const onSubmit=(data)=> {
-        console.log(data)
+    // const onSubmit=(data, e)=> {
+
+    //     console.log(data)
+    // }
+    const onSubmit=(e,)=> {
+        e.preventDefault()
+        console.log(e)
     }
     return(
         <>
@@ -57,17 +62,24 @@ export default function FormComponent(){
 
             <div className="form-group">
             <label className={styles.Label} htmlFor="instance">Advanced Options</label>
-            <input
+            <select className={styles.FormSelect} name="instance" id="instance">
+                <option value="op1">op1</option>
+                <option value="op2">op2</option>
+                <option value="op3">op3</option>
+                <option value="op4">op4</option>
+            </select>
+            {/* <input
                 type="text"
                 name="instance"
                 className={styles.FormInput}
-                id="instance" />
+                id="instance" /> */}
             </div>
 
-            
-            <button className={styles.FormBtn}>Submit</button>
-            <button className={styles.FormBtn}>Plot Animation</button>
-            <button className={styles.FormBtn}>Close</button>
+            {/* <div className="btn-group"> */}
+                <button className={styles.FormBtn}>Submit</button>
+                <button className={styles.FormBtn}>Plot Animation</button>
+                <button className={styles.FormBtn}>Close</button>
+            {/* </div> */}
 
         </div>
         </form>

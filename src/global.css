@@ -1,20 +1,20 @@
 :root {
-    --primary-blue-1: #183762; /* Define a root variable for primary color */
-    --primary-blue-2: #2967CB; /* Define a root variable for primary color */
-    --primary-blue-3: #3B82F6; /* Define a root variable for primary color */
-    --primary-blue-4: rgba(59, 130, 246, 0.50); /* Define a root variable for primary color */
-    --secondary-grey_1: rgba(1, 5, 7, 0.80); /* Define a root variable for secondary color */
-    --secondary-grey_2: #333; /* Define a root variable for secondary color */
-    --secondary-grey_3: #424242; /* Define a root variable for secondary color */
-    --secondary-grey_4: #696969; /* Define a root variable for secondary color */
-    --secondary-grey_5: #F4F4F4; /* Define a root variable for secondary color */
-    --incomplete-status-dark: #EBB700; /* Define a root variable for incomplete status color */
-    --incomplete-status-mid: #F9BF39; /* Define a root variable for incomplete status color */
-    --incomplete-status-light: rgba(249, 191, 57, 0.60); /* Define a root variable for incomplete status color */
-    --failed-status-dark: #E30605; /* Define a root variable for failed status color */
-    --failed-status-mid: #F80302; /* Define a root variable for failed status color */
-    --failed-status-light: rgba(248, 3, 2, 0.31); /* Define a root variable for failed status color */
-    --success-status-dark: #00A544; /* Define a root variable for success status color */
-    --success-status-mid: rgba(1, 200, 83, 0.80); /* Define a root variable for success status color */
-    --success-status-light: rgba(1, 200, 83, 0.31); /* Define a root variable for success status color */
+    --primary-blue-1: #183762; 
+    --primary-blue-2: #2967CB; 
+    --primary-blue-3: #3B82F6; 
+    --primary-blue-4: rgba(59, 130, 246, 0.50); 
+    --secondary-grey_1: rgba(1, 5, 7, 0.80); 
+    --secondary-grey_2: #333; 
+    --secondary-grey_3: #424242; 
+    --secondary-grey_4: #696969; 
+    --secondary-grey_5: #F4F4F4; 
+    --incomplete-status-dark: #EBB700; 
+    --incomplete-status-mid: #F9BF39; 
+    --incomplete-status-light: rgba(249, 191, 57, 0.60); 
+    --failed-status-dark: #E30605; 
+    --failed-status-mid: #F80302; 
+    --failed-status-light: rgba(248, 3, 2, 0.31); 
+    --success-status-dark: #00A544; 
+    --success-status-mid: rgba(1, 200, 83, 0.80); 
+    --success-status-light: rgba(1, 200, 83, 0.31); 
 }
