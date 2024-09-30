@@ -1,0 +1,10 @@
+.App{
+    display: grid;
+    grid-template-columns: 3fr 9fr;
+}
+
+.Sidebar {
+    padding: 46px 16px;
+    background: #424242;
+    height: 93.2vh;
+}

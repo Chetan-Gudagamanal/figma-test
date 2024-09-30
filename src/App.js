@@ -1,33 +1,25 @@
-import { Box, Button, Stack, styled, Typography } from '@mui/material';
+import { Box, Button, styled } from '@mui/material';
 import './App.css';
 import FormComponent from './common/FormComponent';
 import MQTTClient from './common/MqttClient';
-import Navbar from './common/Navbar';
 import Container from '@mui/material/Container';
 import ResponsiveAppBar from './common/Navbar';
-
-const StyledButton = styled(Button)(()=> ({
-  color: 'green',
-  backgroundColor: 'red',
-  '&:hover': {
-    backgroundColor: 'blue',
-  },
-}));
+// import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import TakeoffPage from './views/Takeoff/TakeoffPage';
+import FencePage from './views/Fence/FencePage';
 
 function App() {
   return (
+    <Router>
     <Container maxWidth={false} disableGutters>
-      {/* <Navbar /> */}
       <ResponsiveAppBar />
-      <Box className='App'>
-        <div className='Sidebar'>
-            <FormComponent/>
-        </div>
-        <div className='Display'>
-          <MQTTClient />
-        </div>
-      </Box>
+        <Routes>
+          <Route path="/" element={<TakeoffPage />} />
+          <Route path="/fence" element={<FencePage />} />
+        </Routes>
     </Container>
+    </Router>
   );
 }
 

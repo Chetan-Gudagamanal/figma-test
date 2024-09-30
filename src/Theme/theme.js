@@ -48,20 +48,28 @@ const theme = createTheme({
             }
           }
         },
+        MuiTableCell: {
+          styleOverrides: {
+            head: {
+              backgroundColor: "#424242",
+              color: "#fff",
+            }
+          }
+        },
         MuiOutlinedInput: {
           styleOverrides: {
             root: {
               opacity: "0.5",
               backgroundColor: "#F4F4F4",
-              "&:hover": {
-                backgroundColor: "#F4F4F4",
-                "@media (hover: none)": {
-                  backgroundColor: "#F4F4F4"
-                }
-              },
-              "&.Mui-focused": {
-                backgroundColor: "#F4F4F4"
-              }
+              // "&:hover": {
+              //   backgroundColor: "#F4F4F4",
+              //   "@media (hover: none)": {
+              //     backgroundColor: "#F4F4F4"
+              //   }
+              // },
+              // "&.Mui-focused": {
+              //   backgroundColor: "#F4F4F4"
+              // }
             }
           }
         },
