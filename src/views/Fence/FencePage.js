@@ -1,5 +1,5 @@
 import { Box, Button, styled, MenuItem, Select, TextField, createTheme   } from '@mui/material';
-import FormComponent from "../../common/FormComponent";
+import FormComponent from "../Takeoff/FormComponent.js";
 import MQTTClient from "../../common/MqttClient";
 import FenceData from '../../common/FenceData';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -8,6 +8,9 @@ import Checkbox from '@mui/material/Checkbox';
 
 import './FencePage.css';
 import { ThemeContext } from '@emotion/react';
+import MapComponentForFence from '../../components/MapBox/Lagecy/MapComponentForFence.js';
+import { useState } from 'react';
+import FenceApp from '../../components/MapBox/Fence/Fence.tsx';
 
 const TextFieldWrapper = styled(TextField)`
   fieldset {
@@ -49,15 +52,18 @@ const textBoxTheme = createTheme({
 });
 
 export default function FencePage() {
+    const [polygons, setPolygons] = useState([]);
+    const [features, setFeatures] = useState({});
   return (
     <Box className='Fence'>
         <div className='Display'>
-          <MQTTClient />
+          {/* <MapComponentForFence polygons={polygons} setPolygons={setPolygons}  /> */}
+          <FenceApp features={features} setFeatures={setFeatures}/>
         </div>
         <div className='Bottombar'>
         <ThemeContext.Provider value={textBoxTheme}>
             <Box sx={{margin:'10px'}}>
-                <FenceData />
+                <FenceData features={features} polygons={polygons} setPolygons={setPolygons}/>
             </Box>
             <Box sx={{margin:'20px'}}>
                 <Select

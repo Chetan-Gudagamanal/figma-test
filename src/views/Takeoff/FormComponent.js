@@ -2,12 +2,29 @@ import { useState } from "react";
 import { Box, Button, createTheme, ThemeProvider, FormControl, Grid2, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
 
 export default function FormComponent(){
-    const [animationID, setAnimationID] = useState('');
-    const [instance, setInstance] = useState('');
+    // const [animationID, setAnimationID] = useState(null);
+    // const [instance, setInstance] = useState(null);
+    // const [dronecount, setDronecount] = useState(null);
+    // const [latlon, setLatlon] = useState(null)
+    // const [animpath, setAnimpath] = useState(null)
+    // const [advVal, setAdvVal] = useState(null)
+
+    const [formData, setFormData] = useState({animationID:'', instance:'', dronecount:'', latlon:'', animpath:'', advVal:''})
+
+    const handleDataChange=(newKey, newVal)=>{
+        setFormData(prev=>({...prev, [newKey]:newVal}))
+    }
+
     const onSubmit=(e,)=> {
         e.preventDefault()
-        console.log(animationID, instance)
+        console.log(formData)
     }
+
+    const fileBrowseHandler = (event) => {
+        let value = URL.createObjectURL(event.target.files[0]);
+        console.log(value);
+        // setImageUrl(value);
+    };
 
     const btnTheme = createTheme({
         palette: {
@@ -52,6 +69,7 @@ export default function FormComponent(){
                     fullWidth
                     autoFocus
                     sx={{marginBottom: 1}}
+                    onChange={(e)=>handleDataChange('animationID',e.target.value)}
                     // helperText={touched.username ? errors.username : ''}
                     // error={touched.username && Boolean(errors.username)}
                     // value={values.username}
@@ -72,6 +90,7 @@ export default function FormComponent(){
                     fullWidth
                     autoFocus
                     sx={{marginBottom: 1}}
+                    onChange={(e)=>handleDataChange("instance",e.target.value)}
                     // helperText={touched.username ? errors.username : ''}
                     // error={touched.username && Boolean(errors.username)}
                     // value={values.username}
@@ -91,6 +110,7 @@ export default function FormComponent(){
                     fullWidth
                     autoFocus
                     sx={{marginBottom: 1}}
+                    onChange={(e)=>handleDataChange("dronecount",e.target.value)}
                     // helperText={touched.username ? errors.username : ''}
                     // error={touched.username && Boolean(errors.username)}
                     // value={values.username}
@@ -110,6 +130,7 @@ export default function FormComponent(){
                     fullWidth
                     autoFocus
                     sx={{marginBottom: 1}}
+                    onChange={(e)=>handleDataChange("latlon",e.target.value)}
                     // helperText={touched.username ? errors.username : ''}
                     // error={touched.username && Boolean(errors.username)}
                     // value={values.username}
@@ -123,12 +144,14 @@ export default function FormComponent(){
                     <Typography sx={{ color: '#fff' }}>Animation File Path :</Typography>
                 </InputLabel>
                 <TextField
+                    type="file"
                     variant="outlined"
                     id="animpath"
                     name="animpath"
                     fullWidth
                     autoFocus
                     sx={{marginBottom: 1}}
+                    onChange={(e)=>handleDataChange("animpath",e.target.value)}
                     // helperText={touched.username ? errors.username : ''}
                     // error={touched.username && Boolean(errors.username)}
                     // value={values.username}
@@ -145,7 +168,8 @@ export default function FormComponent(){
                 <Select
                     id="adv"
                     fullWidth
-                    // value={adv}
+                    onChange={(e)=>handleDataChange("advVal",e.target.value)}
+                    defaultValue={'10'}
                     // onChange={handleChange}
                     >
                     <MenuItem value={10}>Ten</MenuItem>
