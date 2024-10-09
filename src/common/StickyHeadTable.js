@@ -25,28 +25,28 @@ const columns = [
     label: 'Latitude',
     minWidth: 170,
     // align: 'right',
-    format: (value) => value.toLocaleString('en-US'),
+    format: (value) => value.toFixed(4),
   },
   {
     id: 'longitude',
     label: 'Longitude',
     minWidth: 170,
     // align: 'right',
-    format: (value) => value.toFixed(2),
+    format: (value) => value.toFixed(4),
   },
   {
     id: 'altitude',
     label: 'Altitude',
     minWidth: 170,
     // align: 'right',
-    format: (value) => value.toFixed(2),
+    format: (value) => value.toFixed(4),
   },
   {
     id: 'delete1',
     label: 'Delete',
     minWidth: 170,
     // align: 'right',
-    format: (value) => value.toFixed(2),
+    format: (value) => value.toLocaleString('en-US'),
   },
 ];
 
@@ -55,27 +55,37 @@ function createData(num, fencetype, latitude, longitude, altitude, delete1) {
   return { num, fencetype, latitude, longitude, altitude, delete1 };
 }
 
-const rows = [
-  createData(1,'test','India', 'IN', 1324171354, 3287263),
-  createData(2,'test','China', 'CN', 1403500365, 9596961),
-  createData(3,'test','Italy', 'IT', 60483973, 301340),
-  createData(4,'test','United States', 'US', 327167434, 9833520),
-  createData(5,'test','Canada', 'CA', 37602103, 9984670),
-  createData(6,'test','Australia', 'AU', 25475400, 7692024),
-  createData(7,'test','Germany', 'DE', 83019200, 357578),
-  createData(8,'test','Ireland', 'IE', 4857000, 70273),
-  createData(9,'test','Mexico', 'MX', 126577691, 1972550),
-  createData(10,'test','Japan', 'JP', 126317000, 377973),
-  createData(11,'test','France', 'FR', 67022000, 640679),
-  createData(12,'test','United Kingdom', 'GB', 67545757, 242495),
-  createData(13,'test','Russia', 'RU', 146793744, 17098246),
-  createData(14,'test','Nigeria', 'NG', 200962417, 923768),
-  createData(15,'test','Brazil', 'BR', 210147125, 8515767),
-];
-
-export default function StickyHeadTable() {
+export default function StickyHeadTable({features, polygons, setPolygons}) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  // console.log(rows)
+  const [rows, setRows] = React.useState([]);
+
+  React.useEffect(()=> {
+    let updatedRows = []
+    // polygons.forEach((polygon, index) => {
+    //   polygon.forEach(element => {
+    //     console.log(element)
+    //     // updatedRows.push(createData(index+1, 'test type', element[0], element[1], 'alt', 'Delete'))
+    //     updatedRows = [...updatedRows, createData(index+1, 'test type', element[0], element[1], 'alt', 'Delete')]
+    //   });
+    //   }
+    // )
+    let polygon_index=1
+    for (let polygon in features) {
+      console.log(features[polygon]["geometry"])
+      console.log(features[polygon]["geometry"]["coordinates"])
+      features[polygon]["geometry"]["coordinates"][0].forEach((element, index) => {
+        updatedRows = [...updatedRows, createData(index, 'test type', element[0], element[1], element[2], 'Delete')]
+      });
+      polygon_index+=1
+    }
+    console.log("====================================")
+    console.log(updatedRows)
+    console.log("====================================")
+    setRows(updatedRows)
+  }
+  ,[polygons, features])
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -92,6 +102,7 @@ export default function StickyHeadTable() {
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
+              {/* {console.log(columns)} */}
               {columns.map((column) => (
                 <TableCell
                   key={column.id}
@@ -104,7 +115,7 @@ export default function StickyHeadTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
+            {rows.length ? rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
                 return (
@@ -121,7 +132,7 @@ export default function StickyHeadTable() {
                     })}
                   </TableRow>
                 );
-              })}
+              }): null}
           </TableBody>
         </Table>
       </TableContainer>
