@@ -1,4 +1,4 @@
-import { Box, Button, styled } from '@mui/material';
+import { Box, Button, Container, styled } from '@mui/material';
 import FormComponent from "./FormComponent.js";
 import MQTTClient from "../../common/MqttClient";
 
@@ -9,10 +9,11 @@ import MapboxMarkGrid2 from '../../components/MapBox/Takeoff/MapboxMarkGrid2.tsx
 export default function TakeoffPage() {
   return (
     <Box className='App'>
-        <div className='Sidebar'>
+        <Container disableGutters={true} className='Sidebar' style={{padding:'10px 0px 10px 10px', boxSizing:'border-box'}}>
             <FormComponent />
-        </div>
-        <div className='Display'>
+        </Container>
+        {/* <div className='Display'> */}
+        <div disableGutters={true} style={{padding:'10px'}}>
           {/* <MapboxMarkGrid/> */}
           <MapboxMarkGrid2/>
         </div>

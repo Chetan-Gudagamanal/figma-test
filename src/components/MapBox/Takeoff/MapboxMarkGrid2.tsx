@@ -13,7 +13,7 @@ const TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 const initialViewState = {
   latitude: 28.5465,
   longitude: 77.1839,
-  zoom: 17
+  zoom: 17,
 };
 
 
@@ -77,7 +77,7 @@ export default function MapboxMarkGrid2() {
         <NavigationControl />
         
       </Map>
-      <ControlPanel events={events} />
+      {/* <ControlPanel events={events} /> */}
     </>
   );
 }

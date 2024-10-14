@@ -2,7 +2,10 @@ import { createColorScheme, createTheme } from "@mui/material";
 
 const theme = createTheme({
     palette: {
-        anger: createColorScheme('#F40B27'),
+        background: {
+          default: "#333",
+        },
+        // anger: createColorScheme('#F40B27'),
         primary: {
             main: "#183762",
             b1: "#183762",
@@ -36,16 +39,13 @@ const theme = createTheme({
             mid: "rgba(1, 200, 83, 0.80)",
             light: "rgba(1, 200, 83, 0.31)",
         },
-        background: {
-          default: "#333",
-        },
       },
       components: {
         MuiAppBar: {
           styleOverrides: {
-            colorPrimary: {
-              backgroundColor: "#424242"
-            }
+            // colorPrimary: {
+            //   backgroundColor: "#424242"
+            // }
           }
         },
         MuiTableCell: {
@@ -72,6 +72,14 @@ const theme = createTheme({
               // }
             }
           }
+        },
+        MuiSelect: {
+          styleOverrides: {
+            root: {
+              borderRadius: 8,
+              maxHeight: 50,
+            },
+          },
         },
       },
       typography: {

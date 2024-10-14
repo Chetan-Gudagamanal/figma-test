@@ -7,7 +7,7 @@ import DrawControl from './draw-control.tsx';
 import ControlPanel from './control-panel.tsx';
 import Pin from '../pin.tsx';
 
-const TOKEN = ''; // Set your mapbox token here
+const TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 
 const initialMarkers: {id: number; longitude: number; latitude: number}[] = [];
 
@@ -53,7 +53,7 @@ export default function FenceApp({features, setFeatures}) {
           // latitude: 42.76,
           latitude: 28.5465,
           longitude: 77.1839,
-          zoom: 17
+          zoom: 17,
         }}
         mapStyle="mapbox://styles/mapbox/streets-v11"
         mapboxAccessToken={TOKEN}
