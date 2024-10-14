@@ -8,7 +8,7 @@ import Pin from '../pin.tsx';
 
 import type { MarkerDragEvent, LngLat } from 'react-map-gl';
 
-const TOKEN = 'pk.eyJ1IjoiY2hldGFuLWciLCJhIjoiY20xdDZnYndyMDEweTJrcG55MDN3cGpxMiJ9.7or4IX1f3S3lfU8i9s7nNg';
+const TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 
 const initialViewState = {
   latitude: 28.5465,
@@ -59,7 +59,7 @@ export default function MapboxMarkGrid2() {
         mapStyle="mapbox://styles/mapbox/streets-v11"
         mapboxAccessToken={TOKEN}
       >
-        {markers.map(marker => (
+        { markers.map(marker => (
           <Marker
             key={marker.id}
             longitude={marker.longitude}

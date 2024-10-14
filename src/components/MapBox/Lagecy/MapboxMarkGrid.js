@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-mapboxgl.accessToken = 'pk.eyJ1IjoiY2hldGFuLWciLCJhIjoiY20xdDZnYndyMDEweTJrcG55MDN3cGpxMiJ9.7or4IX1f3S3lfU8i9s7nNg';
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 
 const MapboxMarkGrid = () => {
   const mapContainerRef = useRef(null);

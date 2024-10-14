@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import { Button } from '@mui/material';
 
-mapboxgl.accessToken = 'pk.eyJ1IjoiY2hldGFuLWciLCJhIjoiY20xdDZnYndyMDEweTJrcG55MDN3cGpxMiJ9.7or4IX1f3S3lfU8i9s7nNg';
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 
 const MapComponentForFence = ({polygons, setPolygons}) => {
   const mapContainer = useRef(null);

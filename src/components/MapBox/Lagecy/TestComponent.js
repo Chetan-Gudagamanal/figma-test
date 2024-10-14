@@ -10,7 +10,7 @@ const MapboxMarkGrid = () => {
   const [coordinates, setCoordinates] = useState([]);
 
   useEffect(() => {
-    mapboxgl.accessToken = 'pk.eyJ1IjoiY2hldGFuLWciLCJhIjoiY20xdDZnYndyMDEweTJrcG55MDN3cGpxMiJ9.7or4IX1f3S3lfU8i9s7nNg';
+    mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 
     mapRef.current = new mapboxgl.Map({
       container: mapContainerRef.current,
