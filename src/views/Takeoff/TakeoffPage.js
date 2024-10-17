@@ -13,7 +13,7 @@ export default function TakeoffPage() {
             <FormComponent />
         </Container>
         {/* <div className='Display'> */}
-        <div disableGutters={true} style={{padding:'10px'}}>
+        <div style={{padding:'10px'}}>
           {/* <MapboxMarkGrid/> */}
           <MapboxMarkGrid2/>
         </div>

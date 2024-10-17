@@ -1,4 +1,4 @@
-import { Box, Button, styled, MenuItem, Select, TextField, createTheme   } from '@mui/material';
+import { Box, Button, styled, MenuItem, Select, TextField, createTheme, InputLabel, Typography   } from '@mui/material';
 import FormComponent from "../Takeoff/FormComponent.js";
 import MQTTClient from "../../common/MqttClient";
 import FenceData from '../../common/FenceData';
@@ -19,7 +19,7 @@ const TextFieldWrapper = styled(TextField)`
   }
 `;
 
-const textBoxTheme = createTheme({
+const fenceTheme = createTheme({
     components: {
         MuiOutlinedInput: {
         styleOverrides: {
@@ -48,6 +48,14 @@ const textBoxTheme = createTheme({
                 },
             }
         },
+        MuiSelect: {
+            styleOverrides: {
+              root: {
+                borderRadius: 8,
+                maxHeight: 50,
+              },
+            },
+        },
     }
 });
 
@@ -61,11 +69,17 @@ export default function FencePage() {
           <FenceApp features={features} setFeatures={setFeatures}/>
         </div>
         <div className='Bottombar'>
-        <ThemeContext.Provider value={textBoxTheme}>
+        <ThemeContext.Provider value={fenceTheme}>
             <Box sx={{margin:'10px'}}>
                 <FenceData features={features} polygons={polygons} setPolygons={setPolygons}/>
             </Box>
             <Box sx={{margin:'20px'}}>
+                <InputLabel
+                    shrink={false}
+                    htmlFor={"username"}
+                >
+                    <Typography sx={{ color: '#fff' }}>Advanced Options :</Typography>
+                </InputLabel>
                 <Select
                     id="adv"
                     fullWidth
@@ -76,13 +90,14 @@ export default function FencePage() {
                     <MenuItem value={20}>Twenty</MenuItem>
                     <MenuItem value={30}>Thirty</MenuItem>
                 </Select>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', color: '#fff' }}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', color: '#fff', alignItems: 'center' }}>
                     {/* <Checkbox label="Label" /> */}
-                    <p>Home Location:</p>
+                    {/* <p>Home Location:</p> */}
+                    <Typography sx={{ color: '#fff' }}>Home Location:</Typography>
                     <FormControlLabel control={<Checkbox defaultChecked />} label="Grid"/>
                 </Box>
                 
-                    <Box bgcolor='red' sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap:'7px', backgroundColor:'#424242', padding:'20px' }}>
+                    <Box bgcolor='red' sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap:'7px', backgroundColor:'#424242', padding:'20px', borderRadius: 2 }}>
                         <TextField label="Altitude" id="outlined-basic" variant="outlined" size="small" />
                         <TextField label="Lattitude" id="outlined-basic" variant="outlined" size="small" />
                         <TextField label="Longitude" id="outlined-basic" variant="outlined" size="small" />
