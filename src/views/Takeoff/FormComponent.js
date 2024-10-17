@@ -45,7 +45,7 @@ export default function FormComponent(){
                 root: {
                     borderRadius: '20px',
                     textTransform: 'none',
-                    width: '250px',
+                    width: '240px',
                     height: '40px',
                     alignSelf: 'center',
                 },

@@ -71,7 +71,7 @@ export default function StickyHeadTable({features, polygons, setPolygons}) {
     //   });
     //   }
     // )
-    let polygon_index=1
+    let polygon_index = 1
     for (let polygon in features) {
       console.log(features[polygon]["geometry"])
       console.log(features[polygon]["geometry"]["coordinates"])
@@ -80,9 +80,6 @@ export default function StickyHeadTable({features, polygons, setPolygons}) {
       });
       polygon_index+=1
     }
-    console.log("====================================")
-    console.log(updatedRows)
-    console.log("====================================")
     setRows(updatedRows)
   }
   ,[polygons, features])
@@ -99,7 +96,7 @@ export default function StickyHeadTable({features, polygons, setPolygons}) {
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden'}}>
       <TableContainer sx={{ maxHeight: 245}}>
-        <Table stickyHeader aria-label="sticky table">
+        <Table stickyHeader aria-label="sticky table" >
           <TableHead>
             <TableRow>
               {/* {console.log(columns)} */}

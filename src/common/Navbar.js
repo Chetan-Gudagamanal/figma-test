@@ -87,7 +87,7 @@ function ResponsiveAppBar() {
           style={
             param.pathname == "/upload" ? { ...activeStyle } : { ...baseStyle }
           }
-          to={"/fence"}
+          to={"/upload"}
           onMouseEnter={() => {
             setIconColor({ ...iconColor, uploadHover: true });
           }}
