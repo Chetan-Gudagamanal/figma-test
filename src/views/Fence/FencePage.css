@@ -1,0 +1,15 @@
+.Fence{
+    height: 93.2vh;
+    display: grid;
+    /* grid-template-rows: 70% 30%; */
+    grid-template-rows: 65% 35%;
+}
+
+.Bottombar {
+    /* padding: 46px 16px; */
+    border-top: 1px solid #696969;
+    background: #333;
+    display: grid;
+    grid-template-columns: 9fr 3fr;
+    /* height: 93.2vh; */
+}

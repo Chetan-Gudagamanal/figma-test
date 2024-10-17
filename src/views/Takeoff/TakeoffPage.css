@@ -1,6 +1,6 @@
 .App{
     display: grid;
-    grid-template-columns: 3fr 9fr;
+    grid-template-columns: 2.5fr 9.5fr;
 }
 
 .Sidebar {

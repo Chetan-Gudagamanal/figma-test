@@ -1,13 +1,30 @@
 import { useState } from "react";
-import { Box, Button, createTheme, ThemeProvider, FormControl, Grid2, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
+import { Box, Button, createTheme, ThemeProvider, FormControl, Grid2, InputLabel, MenuItem, Select, TextField, Typography, Container } from "@mui/material";
 
 export default function FormComponent(){
-    const [animationID, setAnimationID] = useState('');
-    const [instance, setInstance] = useState('');
+    // const [animationID, setAnimationID] = useState(null);
+    // const [instance, setInstance] = useState(null);
+    // const [dronecount, setDronecount] = useState(null);
+    // const [latlon, setLatlon] = useState(null)
+    // const [animpath, setAnimpath] = useState(null)
+    // const [advVal, setAdvVal] = useState(null)
+
+    const [formData, setFormData] = useState({animationID:'', instance:'', dronecount:'', latlon:'', animpath:'', advVal:''})
+
+    const handleDataChange=(newKey, newVal)=>{
+        setFormData(prev=>({...prev, [newKey]:newVal}))
+    }
+
     const onSubmit=(e,)=> {
         e.preventDefault()
-        console.log(animationID, instance)
+        console.log(formData)
     }
+
+    const fileBrowseHandler = (event) => {
+        let value = URL.createObjectURL(event.target.files[0]);
+        console.log(value);
+        // setImageUrl(value);
+    };
 
     const btnTheme = createTheme({
         palette: {
@@ -16,6 +33,7 @@ export default function FormComponent(){
           },
           success: {
             main:'rgba(1, 200, 83, 0.80)'
+            // 01C853
           },
           error: {
             main: '#F80302'
@@ -27,7 +45,7 @@ export default function FormComponent(){
                 root: {
                     borderRadius: '20px',
                     textTransform: 'none',
-                    width: '250px',
+                    width: '240px',
                     height: '40px',
                     alignSelf: 'center',
                 },
@@ -37,13 +55,15 @@ export default function FormComponent(){
       });
     return(
         <>
-        <form onSubmit={onSubmit} className="centered-container-form">
-        <Grid2 container >
+        {/* <form onSubmit={onSubmit} className="centered-container-form" style={{padding: '20px', background:'#424242'}}> */}
+        <form onSubmit={onSubmit} className="centered-container-form" style={{height:'100%', background:'#424242', borderRadius:'8px' }}>
+        <Container sx={{height:'100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding:'40px 20px', boxSizing:'border-box'}}>
+            <Box sx={{display: 'flex', justifyContent: 'center', flexDirection:'column', width:'100%'}}>
                 <InputLabel
                     shrink={false}
                     htmlFor={"username"}
                 >
-                    <Typography sx={{ color: '#fff' }}>Animation ID :</Typography>
+                    <Typography sx={{ color: '#fff', fontWeight:"semibold" }}>Animation ID :</Typography>
                 </InputLabel>
                 <TextField
                     variant="outlined"
@@ -52,6 +72,8 @@ export default function FormComponent(){
                     fullWidth
                     autoFocus
                     sx={{marginBottom: 1}}
+                    InputProps={{ sx: { borderRadius: 2, maxHeight: 50 } }}
+                    onChange={(e)=>handleDataChange('animationID',e.target.value)}
                     // helperText={touched.username ? errors.username : ''}
                     // error={touched.username && Boolean(errors.username)}
                     // value={values.username}
@@ -63,7 +85,7 @@ export default function FormComponent(){
                     color="primary"
                     htmlFor={"username"}
                 >
-                    <Typography sx={{ color: '#fff' }}>Instance :</Typography>
+                    <Typography sx={{ color: '#fff', fontWeight:"semibold" }}>Instance :</Typography>
                 </InputLabel>
                 <TextField
                     variant="outlined"
@@ -72,6 +94,8 @@ export default function FormComponent(){
                     fullWidth
                     autoFocus
                     sx={{marginBottom: 1}}
+                    InputProps={{ sx: { borderRadius: 2, maxHeight: 50 } }}
+                    onChange={(e)=>handleDataChange("instance",e.target.value)}
                     // helperText={touched.username ? errors.username : ''}
                     // error={touched.username && Boolean(errors.username)}
                     // value={values.username}
@@ -82,7 +106,7 @@ export default function FormComponent(){
                     shrink={false}
                     htmlFor={"username"}
                 >
-                    <Typography sx={{ color: '#fff' }}>No. Of Drones :</Typography>
+                    <Typography sx={{ color: '#fff', fontWeight:"semibold" }}>No. Of Drones :</Typography>
                 </InputLabel>
                 <TextField
                     variant="outlined"
@@ -91,6 +115,8 @@ export default function FormComponent(){
                     fullWidth
                     autoFocus
                     sx={{marginBottom: 1}}
+                    InputProps={{ sx: { borderRadius: 2, maxHeight: 50 } }}
+                    onChange={(e)=>handleDataChange("dronecount",e.target.value)}
                     // helperText={touched.username ? errors.username : ''}
                     // error={touched.username && Boolean(errors.username)}
                     // value={values.username}
@@ -101,7 +127,7 @@ export default function FormComponent(){
                     shrink={false}
                     htmlFor={"username"}
                 >
-                    <Typography sx={{ color: '#fff' }}>Geo Location(Lat, Lon) :</Typography>
+                    <Typography sx={{ color: '#fff', fontWeight:"semibold" }}>Geo Location(Lat, Lon) :</Typography>
                 </InputLabel>
                 <TextField
                     variant="outlined"
@@ -110,6 +136,8 @@ export default function FormComponent(){
                     fullWidth
                     autoFocus
                     sx={{marginBottom: 1}}
+                    InputProps={{ sx: { borderRadius: 2, maxHeight: 50 } }}
+                    onChange={(e)=>handleDataChange("latlon",e.target.value)}
                     // helperText={touched.username ? errors.username : ''}
                     // error={touched.username && Boolean(errors.username)}
                     // value={values.username}
@@ -120,15 +148,18 @@ export default function FormComponent(){
                     shrink={false}
                     htmlFor={"username"}
                 >
-                    <Typography sx={{ color: '#fff' }}>Animation File Path :</Typography>
+                    <Typography sx={{ color: '#fff', fontWeight:"semibold" }}>Animation File Path :</Typography>
                 </InputLabel>
                 <TextField
+                    type="file"
                     variant="outlined"
                     id="animpath"
                     name="animpath"
                     fullWidth
                     autoFocus
                     sx={{marginBottom: 1}}
+                    InputProps={{ sx: { borderRadius: 2, maxHeight: 50 } }}
+                    onChange={(e)=>handleDataChange("animpath",e.target.value)}
                     // helperText={touched.username ? errors.username : ''}
                     // error={touched.username && Boolean(errors.username)}
                     // value={values.username}
@@ -139,28 +170,31 @@ export default function FormComponent(){
                     shrink={false}
                     htmlFor={"username"}
                 >
-                    <Typography sx={{ color: '#fff' }}>Advanced Options :</Typography>
+                    <Typography sx={{ color: '#fff', fontWeight:"semibold" }}>Advanced Options :</Typography>
                 </InputLabel>
                 
                 <Select
                     id="adv"
                     fullWidth
-                    // value={adv}
+                    onChange={(e)=>handleDataChange("advVal",e.target.value)}
+                    defaultValue={'10'}
+                    InputProps={{ sx: { borderRadius: 2, maxHeight: 50 } }}
                     // onChange={handleChange}
                     >
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
+                    <MenuItem value={10} sx={{borderRadius:'5px'}}>Ten</MenuItem>
+                    <MenuItem value={20} sx={{borderRadius:'5px'}}>Twenty</MenuItem>
+                    <MenuItem value={30} sx={{borderRadius:'5px'}}>Thirty</MenuItem>
                 </Select>
+            </Box>
                 
-                <ThemeProvider theme={btnTheme}>
-                <Box sx={{display: 'flex', justifyContent: 'center', flexDirection:'column', width:'100%', marginTop:'50px'}}>
-                    <Button variant="contained" color="success" sx={{marginTop: 2}} onClick={onSubmit}>Submit</Button>
-                    <Button variant="contained" color="primary" sx={{marginTop: 2}} onClick={onSubmit}>Plot Animation</Button>
-                    <Button variant="contained" color="error" sx={{marginTop: 2}} onClick={onSubmit}>Close</Button>
-                </Box>
-                </ThemeProvider>
-        </Grid2>
+            <ThemeProvider theme={btnTheme}>
+            <Box sx={{display: 'flex', justifyContent: 'center', flexDirection:'column', width:'100%', marginTop:'50px'}}>
+                <Button variant="contained" color="success" sx={{marginTop: 2, color:'white', fontSize:'20px'}} onClick={onSubmit}>Submit</Button>
+                <Button variant="contained" color="primary" sx={{marginTop: 2, color:'white', fontSize:'20px'}} onClick={onSubmit}>Plot Animation</Button>
+                <Button variant="contained" color="error" sx={{marginTop: 2, color:'white', fontSize:'20px'}} onClick={onSubmit}>Close</Button>
+            </Box>
+            </ThemeProvider>
+        </Container>
         </form>
         </>
     )

@@ -2,7 +2,10 @@ import { createColorScheme, createTheme } from "@mui/material";
 
 const theme = createTheme({
     palette: {
-        anger: createColorScheme('#F40B27'),
+        background: {
+          default: "#333",
+        },
+        // anger: createColorScheme('#F40B27'),
         primary: {
             main: "#183762",
             b1: "#183762",
@@ -36,15 +39,20 @@ const theme = createTheme({
             mid: "rgba(1, 200, 83, 0.80)",
             light: "rgba(1, 200, 83, 0.31)",
         },
-        background: {
-          default: "#333",
-        },
       },
       components: {
         MuiAppBar: {
           styleOverrides: {
-            colorPrimary: {
-              backgroundColor: "#424242"
+            // colorPrimary: {
+            //   backgroundColor: "#424242"
+            // }
+          }
+        },
+        MuiTableCell: {
+          styleOverrides: {
+            head: {
+              backgroundColor: "#424242",
+              color: "#fff",
             }
           }
         },
@@ -53,17 +61,25 @@ const theme = createTheme({
             root: {
               opacity: "0.5",
               backgroundColor: "#F4F4F4",
-              "&:hover": {
-                backgroundColor: "#F4F4F4",
-                "@media (hover: none)": {
-                  backgroundColor: "#F4F4F4"
-                }
-              },
-              "&.Mui-focused": {
-                backgroundColor: "#F4F4F4"
-              }
+              // "&:hover": {
+              //   backgroundColor: "#F4F4F4",
+              //   "@media (hover: none)": {
+              //     backgroundColor: "#F4F4F4"
+              //   }
+              // },
+              // "&.Mui-focused": {
+              //   backgroundColor: "#F4F4F4"
+              // }
             }
           }
+        },
+        MuiSelect: {
+          styleOverrides: {
+            root: {
+              borderRadius: 8,
+              maxHeight: 50,
+            },
+          },
         },
       },
       typography: {
