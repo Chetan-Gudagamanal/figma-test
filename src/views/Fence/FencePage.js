@@ -11,6 +11,7 @@ import { ThemeContext } from '@emotion/react';
 import MapComponentForFence from '../../components/MapBox/Lagecy/MapComponentForFence.js';
 import { useState } from 'react';
 import FenceApp from '../../components/MapBox/Fence/Fence.tsx';
+import CircularWithValueLabel from '../../common/CircularWithValueLabel.js';
 
 const TextFieldWrapper = styled(TextField)`
   fieldset {

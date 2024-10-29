@@ -1,13 +1,8 @@
 import { useState } from "react";
-import { Box, Button, createTheme, ThemeProvider, FormControl, Grid2, InputLabel, MenuItem, Select, TextField, Typography, Container } from "@mui/material";
+import { Box, Button, createTheme, ThemeProvider, FormControl, Grid2, InputLabel, MenuItem, Select, TextField, Typography, Container, CircularProgress } from "@mui/material";
+import CircularWithValueLabel from "../../common/CircularWithValueLabel";
 
-export default function FormComponent(){
-    // const [animationID, setAnimationID] = useState(null);
-    // const [instance, setInstance] = useState(null);
-    // const [dronecount, setDronecount] = useState(null);
-    // const [latlon, setLatlon] = useState(null)
-    // const [animpath, setAnimpath] = useState(null)
-    // const [advVal, setAdvVal] = useState(null)
+export default function FormComponent({setMarkers, progress}){
 
     const [formData, setFormData] = useState({animationID:'', instance:'', dronecount:'', latlon:'', animpath:'', advVal:''})
 
@@ -18,6 +13,26 @@ export default function FormComponent(){
     const onSubmit=(e,)=> {
         e.preventDefault()
         console.log(formData)
+        fetch('http://localhost:8000/executeScript', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            let formatedData = data.map((item)=>{
+                return {
+                    id: item.id,
+                    longitude: Number(item.longitude),
+                    latitude: Number(item.latitude)
+                }
+            }
+            )
+            setMarkers(formatedData)
+        })
     }
 
     const fileBrowseHandler = (event) => {
@@ -150,7 +165,29 @@ export default function FormComponent(){
                 >
                     <Typography sx={{ color: '#fff', fontWeight:"semibold" }}>Animation File Path :</Typography>
                 </InputLabel>
+
                 <TextField
+                    variant="outlined"
+                    id="latlon"
+                    name="latlon"
+                    fullWidth
+                    autoFocus
+                    sx={{marginBottom: 1}}
+                    InputProps={{ sx: { borderRadius: 2, maxHeight: 50 } }}
+                    onChange={(e)=>handleDataChange("latlon",e.target.value)}
+                    // helperText={touched.username ? errors.username : ''}
+                    // error={touched.username && Boolean(errors.username)}
+                    // value={values.username}
+                    // onChange={handleChange}
+                />
+
+                {/* <InputLabel
+                    shrink={false}
+                    htmlFor={"username"}
+                >
+                    <Typography sx={{ color: '#fff', fontWeight:"semibold" }}>Animation File Path :</Typography>
+                </InputLabel> */}
+                {/* <TextField
                     type="file"
                     variant="outlined"
                     id="animpath"
@@ -164,7 +201,7 @@ export default function FormComponent(){
                     // error={touched.username && Boolean(errors.username)}
                     // value={values.username}
                     // onChange={handleChange}
-                />
+                /> */}
 
                 <InputLabel
                     shrink={false}
@@ -186,6 +223,10 @@ export default function FormComponent(){
                     <MenuItem value={30} sx={{borderRadius:'5px'}}>Thirty</MenuItem>
                 </Select>
             </Box>
+            {progress>0 ? <Box sx={{display: 'flex', justifyContent: 'center', flexDirection:'column', width:'100%'}}>
+            <CircularWithValueLabel progress={progress}/>
+            </Box>:<></>}
+
                 
             <ThemeProvider theme={btnTheme}>
             <Box sx={{display: 'flex', justifyContent: 'center', flexDirection:'column', width:'100%', marginTop:'50px'}}>

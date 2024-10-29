@@ -1,26 +1,32 @@
 import * as React from 'react';
 import { useState, useCallback } from 'react';
-import { render } from 'react-dom';
 import Map, { Marker, NavigationControl } from 'react-map-gl';
-
-import ControlPanel from './control-panel.tsx';
 import Pin from '../pin.tsx';
-
-import type { MarkerDragEvent, LngLat } from 'react-map-gl';
 
 const TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 
 const initialViewState = {
-  latitude: 28.5465,
-  longitude: 77.1839,
+  latitude: 28.5450552,
+  longitude: 77.1936512,
   zoom: 17,
 };
 
 
-const initialMarkers: {id: number; longitude: number; latitude: number}[] = [];
+const initialMarkers: {id: number; longitude: number; latitude: number}[] = [
+  {
+      "id": 0,
+      "longitude": 77.1839,
+      "latitude": 28.5465
+  },
+  {
+      "id": 1,
+      "longitude": 77.1839,
+      "latitude": 28.54653
+  }
+];
 
-for (let i = 0; i < 10; i++) {
-    for (let j = 0; j < 10; j++) {
+for (let i = 0; i < 2; i++) {
+    for (let j = 0; j < 2; j++) {
       const id = i * 10 + j;
       const lng = 77.1839 + (i * 0.00003); // Adjust longitude
       const lat = 28.5465 + (j * 0.00003); // Adjust latitude
@@ -28,29 +34,26 @@ for (let i = 0; i < 10; i++) {
     }
   }
 
-export default function MapboxMarkGrid2() {
-  const [markers, setMarkers] = useState(initialMarkers);
-  const [events, logEvents] = useState<Record<string, LngLat>>({});
 
-//   const onMarkerDragStart = useCallback((event: MarkerDragEvent, id: number) => {
-//     logEvents(_events => ({ ..._events, [id]: { onDragStart: event.lngLat } }));
-//   }, []);
+interface Marker {
+  id: number;
+  longitude: number;
+  latitude: number;
+}
 
-//   const onMarkerDrag = useCallback((event: MarkerDragEvent, id: number) => {
-//     logEvents(_events => ({ ..._events, [id]: { onDrag: event.lngLat } }));
+interface MapboxMarkGrid2Props {
+  markers: Marker[];
+}
 
-//     setMarkers(currentMarkers =>
-//       currentMarkers.map(marker =>
-//         marker.id === id
-//           ? { ...marker, longitude: event.lngLat.lng, latitude: event.lngLat.lat }
-//           : marker
-//       )
-//     );
-//   }, []);
-
-//   const onMarkerDragEnd = useCallback((event: MarkerDragEvent, id: number) => {
-//     logEvents(_events => ({ ..._events, [id]: { onDragEnd: event.lngLat } }));
-//   }, []);
+const takeoffMap = React.memo( function MapboxMarkGrid2({markers}: MapboxMarkGrid2Props) {
+  console.log('markers:', markers);
+  console.log(initialMarkers)
+  const mapRef = React.useRef(null);
+  // React.useEffect(() => {
+  //   if (mapRef?.current) {
+  //     // mapRef.current.zoomTo(mapRef.current.getZoom());
+  //   }
+  // }, [markers]);
 
   return (
     <>
@@ -58,8 +61,9 @@ export default function MapboxMarkGrid2() {
         initialViewState={initialViewState}
         mapStyle="mapbox://styles/mapbox/streets-v11"
         mapboxAccessToken={TOKEN}
+        ref = {mapRef}
       >
-        { markers.map(marker => (
+        { markers?.map(marker => (
           <Marker
             key={marker.id}
             longitude={marker.longitude}
@@ -80,8 +84,10 @@ export default function MapboxMarkGrid2() {
       {/* <ControlPanel events={events} /> */}
     </>
   );
-}
+})
 
 // export function renderToDom(container) {
 //   render(<App />, container);
 // }
+
+export default takeoffMap
