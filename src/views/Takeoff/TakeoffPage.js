@@ -23,6 +23,7 @@ export default function TakeoffPage() {
 
     socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
+      console.log(data);
       setProgress(Number(data));
     };
 

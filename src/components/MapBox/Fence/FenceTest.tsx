@@ -24,22 +24,6 @@ export default function FenceApp({features, setFeatures}) {
   // const [features, setFeatures] = useState({});
   const [markers, setMarkers] = useState(initialMarkers);
 
-  React.useEffect(() => {
-    fetch('http://localhost:8000/getAnimationPoints')
-      .then(response => response.json())
-      .then(data => {
-        
-        // let formatedData = data.map((d)=>d.coordinates)
-        // setMarkers(data);
-        let finalData: {id: number; longitude: number; latitude: number}[] = [];
-        data.forEach((ele,id) => {
-            finalData.push({'id':id, 'longitude':ele[0], 'latitude':ele[1]})
-        });
-        console.log(finalData)
-        setMarkers(finalData)
-      });
-  }, []);
-
   const onUpdate = useCallback(e => {
     setFeatures(currFeatures => {
       const newFeatures = {...currFeatures};
@@ -85,7 +69,7 @@ export default function FenceApp({features, setFeatures}) {
             // onDrag={(event) => onMarkerDrag(event, marker.id)}
             // onDragEnd={(event) => onMarkerDragEnd(event, marker.id)}
           >
-            <Pin size={20} />
+            <Pin size={2} />
           </Marker>
         ))}
         <DrawControl
